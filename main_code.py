@@ -1,31 +1,43 @@
-import time
+def kilkist(arr):
+  '''
+    дана функція рхує кількість комбінацій відносно кількості 
+    елементів в списку
+    1 - 1
+    2 - 2
+    3 - 6
+    4 - 24
+    5 - 120
+    ...
+  '''
+  res = 1
+  for i in range(0,len(arr)):
+    res *= (i+1)
+  return res
 
-def permutations(sequence):
-  # print sequence
-  unit = [1, 2, 1, 2, 1]
+def shit(arr,N,part,sym):
+  '''
+    1 аргумент - список з яким ми працюємо
+    2 аргумент - кількість елеемнтів в цьому списку
+    3 аргумент - номер елементу з яким працюємо
+                  ['a','b','c']  (a - 1)(b - 2)(c - 3)
+    4 аргумент - символ з яким працюємо
 
-  if len(sequence) >= 4:
-    for i in range(4, (len(sequence) + 1)):
-      unit = ((unit + [i - 1]) * i)[:-1]
-      # print unit
-    for j in unit:
-      temp = sequence[j]
-      sequence[j] = sequence[0]
-      sequence[0] = temp
-      yield sequence
-  else:
-    print('You can use PEN and PAPER')
+    проходимся по списку і додаємо елементри з ліва на право
+  '''
+  k = 0
+  for i in range(0,N):
+    if k > part:
+      k = 0
+    arr[i] = str(arr[i][0:k]) + str(sym) + str(arr[i][k:part])     
+    k += 1  
+  return arr
 
+s = "123" #список з яким працюжмо
 
-s = [1,2,3,4,5]
-# s = [x for x in 'PYTHON']
+a = ['' for x in range(0,kilkist(s))] 
+# створюємо список з довжиною в кількість всіх перестановок
 
-print(s)
-
-z = permutations(s)
-try:
-  while True:
-    # time.sleep(0.0001)
-    print(next(z))
-except StopIteration:
-    print('Done')
+for i in range(0,len(s)):
+  shit(a,kilkist(s),i,s[i])
+  print(a)
+  print("*************")
