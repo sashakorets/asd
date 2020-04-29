@@ -14,7 +14,7 @@ def kilkist(arr):
     res *= (i+1)
   return res
 
-def shit(arr,N,part,sym):
+def perm(arr,N,part,sym):
   '''
     1 аргумент - список з яким ми працюємо
     2 аргумент - кількість елеемнтів в цьому списку
@@ -38,6 +38,6 @@ a = ['' for x in range(0,kilkist(s))]
 # створюємо список з довжиною в кількість всіх перестановок
 
 for i in range(0,len(s)):
-  shit(a,kilkist(s),i,s[i])
+  perm(a,kilkist(s),i,s[i])
   print(a)
   print("*************")
